@@ -16,7 +16,7 @@
 #include <functional>
 using namespace std;
 
-chrono::time_point<chrono::steady_clock> start;//steady_clock –  монотонные часы - рекомендации учебников
+chrono::time_point<chrono::steady_clock> start;//steady_clock вЂ“  РјРѕРЅРѕС‚РѕРЅРЅС‹Рµ С‡Р°СЃС‹ - СЂРµРєРѕРјРµРЅРґР°С†РёРё СѓС‡РµР±РЅРёРєРѕРІ
 void beginProfile()
 {
 	start = chrono::steady_clock::now();
@@ -24,9 +24,9 @@ void beginProfile()
 
 void endProfile(string message)
 {
-	/* auto: при инициализации переменной оно может использоваться вместо типа переменной,
-	чтобы сообщить компилятору, что он должен присвоить тип переменной исходя из инициализируемого значения.
-	Это называется выводом типа (или автоматическим определением типов данных компилятором).*/
+	/* auto: РїСЂРё РёРЅРёС†РёР°Р»РёР·Р°С†РёРё РїРµСЂРµРјРµРЅРЅРѕР№ РѕРЅРѕ РјРѕР¶РµС‚ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊСЃСЏ РІРјРµСЃС‚Рѕ С‚РёРїР° РїРµСЂРµРјРµРЅРЅРѕР№,
+	С‡С‚РѕР±С‹ СЃРѕРѕР±С‰РёС‚СЊ РєРѕРјРїРёР»СЏС‚РѕСЂСѓ, С‡С‚Рѕ РѕРЅ РґРѕР»Р¶РµРЅ РїСЂРёСЃРІРѕРёС‚СЊ С‚РёРї РїРµСЂРµРјРµРЅРЅРѕР№ РёСЃС…РѕРґСЏ РёР· РёРЅРёС†РёР°Р»РёР·РёСЂСѓРµРјРѕРіРѕ Р·РЅР°С‡РµРЅРёСЏ.
+	Р­С‚Рѕ РЅР°Р·С‹РІР°РµС‚СЃСЏ РІС‹РІРѕРґРѕРј С‚РёРїР° (РёР»Рё Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРёРј РѕРїСЂРµРґРµР»РµРЅРёРµРј С‚РёРїРѕРІ РґР°РЅРЅС‹С… РєРѕРјРїРёР»СЏС‚РѕСЂРѕРј).*/
 
 	auto finish = chrono::steady_clock::now();
 	auto t = chrono::duration_cast<chrono::milliseconds>(finish - start);
@@ -34,11 +34,11 @@ void endProfile(string message)
 }
 
 int N = 10000;
-default_random_engine gen1(unsigned(time(0)));//генератор псевдослучайных чисел - на основе сочетания производительности, размера, качества случайности
+default_random_engine gen1(unsigned(time(0)));//РіРµРЅРµСЂР°С‚РѕСЂ РїСЃРµРІРґРѕСЃР»СѓС‡Р°Р№РЅС‹С… С‡РёСЃРµР» - РЅР° РѕСЃРЅРѕРІРµ СЃРѕС‡РµС‚Р°РЅРёСЏ РїСЂРѕРёР·РІРѕРґРёС‚РµР»СЊРЅРѕСЃС‚Рё, СЂР°Р·РјРµСЂР°, РєР°С‡РµСЃС‚РІР° СЃР»СѓС‡Р°Р№РЅРѕСЃС‚Рё
 
-tuple<int, int> tupleGenerator()//генерируем рост и вес
+tuple<int, int> tupleGenerator()//РіРµРЅРµСЂРёСЂСѓРµРј СЂРѕСЃС‚ Рё РІРµСЃ
 {
-	uniform_int_distribution<> height_d(150, 200);// случайные целые значения, равномерно распределенные на замкнутом интервале [a, b]
+	uniform_int_distribution<> height_d(150, 200);// СЃР»СѓС‡Р°Р№РЅС‹Рµ С†РµР»С‹Рµ Р·РЅР°С‡РµРЅРёСЏ, СЂР°РІРЅРѕРјРµСЂРЅРѕ СЂР°СЃРїСЂРµРґРµР»РµРЅРЅС‹Рµ РЅР° Р·Р°РјРєРЅСѓС‚РѕРј РёРЅС‚РµСЂРІР°Р»Рµ [a, b]
 	uniform_int_distribution<> weight_d(50, 100);
 	return tuple<int, int>(height_d(gen1), weight_d(gen1));
 }
@@ -46,83 +46,83 @@ tuple<int, int> tupleGenerator()//генерируем рост и вес
 int main(int argc, char *argv[])
 {
 	setlocale(LC_ALL, "Russian");
-	cout << "Лабораторная работа выполнена студенткой Черниковой Л.В. группа ЗИНРБ - 31" << endl;
+	cout << "Р›Р°Р±РѕСЂР°С‚РѕСЂРЅР°СЏ СЂР°Р±РѕС‚Р° РІС‹РїРѕР»РЅРµРЅР° СЃС‚СѓРґРµРЅС‚РєРѕР№ Р§РµСЂРЅРёРєРѕРІРѕР№ Р›.Р’. РіСЂСѓРїРїР° Р—РРќР Р‘ - 31" << endl;
 	system("pause");
 
 
-	vector<tuple<int, int>> container;//создали кортеж
+	vector<tuple<int, int>> container;//СЃРѕР·РґР°Р»Рё РєРѕСЂС‚РµР¶
 
-	default_random_engine gen(unsigned(time(0)));//генератор псевдослучайных чисел - на основе сочетания производительности, размера, качества случайности
+	default_random_engine gen(unsigned(time(0)));//РіРµРЅРµСЂР°С‚РѕСЂ РїСЃРµРІРґРѕСЃР»СѓС‡Р°Р№РЅС‹С… С‡РёСЃРµР» - РЅР° РѕСЃРЅРѕРІРµ СЃРѕС‡РµС‚Р°РЅРёСЏ РїСЂРѕРёР·РІРѕРґРёС‚РµР»СЊРЅРѕСЃС‚Рё, СЂР°Р·РјРµСЂР°, РєР°С‡РµСЃС‚РІР° СЃР»СѓС‡Р°Р№РЅРѕСЃС‚Рё
 
-	uniform_int_distribution<> height_d(150, 200);// случайные целые значения, равномерно распределенные на замкнутом интервале [a, b] рост
+	uniform_int_distribution<> height_d(150, 200);// СЃР»СѓС‡Р°Р№РЅС‹Рµ С†РµР»С‹Рµ Р·РЅР°С‡РµРЅРёСЏ, СЂР°РІРЅРѕРјРµСЂРЅРѕ СЂР°СЃРїСЂРµРґРµР»РµРЅРЅС‹Рµ РЅР° Р·Р°РјРєРЅСѓС‚РѕРј РёРЅС‚РµСЂРІР°Р»Рµ [a, b] СЂРѕСЃС‚
 
-	uniform_int_distribution<> weight_d(50, 100);// случайные целые значения, равномерно распределенные на замкнутом интервале [a, b] вес
+	uniform_int_distribution<> weight_d(50, 100);// СЃР»СѓС‡Р°Р№РЅС‹Рµ С†РµР»С‹Рµ Р·РЅР°С‡РµРЅРёСЏ, СЂР°РІРЅРѕРјРµСЂРЅРѕ СЂР°СЃРїСЂРµРґРµР»РµРЅРЅС‹Рµ РЅР° Р·Р°РјРєРЅСѓС‚РѕРј РёРЅС‚РµСЂРІР°Р»Рµ [a, b] РІРµСЃ
 
 	//container.reserve(N);
 
 
-	cout << "а) заполнить контейнер случайными данными (методы emplace_back() и push_back())" << endl;
+	cout << "Р°) Р·Р°РїРѕР»РЅРёС‚СЊ РєРѕРЅС‚РµР№РЅРµСЂ СЃР»СѓС‡Р°Р№РЅС‹РјРё РґР°РЅРЅС‹РјРё (РјРµС‚РѕРґС‹ emplace_back() Рё push_back())" << endl;
 	beginProfile();
 	for (int i = 0; i < N; i++)
-		container.push_back(tuple<int, int>(height_d(gen), weight_d(gen)));//добавляет элемент в конец контейнера:1)как копия 2)перемещение
+		container.push_back(tuple<int, int>(height_d(gen), weight_d(gen)));//РґРѕР±Р°РІР»СЏРµС‚ СЌР»РµРјРµРЅС‚ РІ РєРѕРЅРµС† РєРѕРЅС‚РµР№РЅРµСЂР°:1)РєР°Рє РєРѕРїРёСЏ 2)РїРµСЂРµРјРµС‰РµРЅРёРµ
 	endProfile("Push back");
 
 	beginProfile();
 	for (int i = 0; i < N; i++)
-		container.emplace_back(height_d(gen), weight_d(gen));//создает новый элемент в конце контейнера(без лишнего копирования или перемещения)
+		container.emplace_back(height_d(gen), weight_d(gen));//СЃРѕР·РґР°РµС‚ РЅРѕРІС‹Р№ СЌР»РµРјРµРЅС‚ РІ РєРѕРЅС†Рµ РєРѕРЅС‚РµР№РЅРµСЂР°(Р±РµР· Р»РёС€РЅРµРіРѕ РєРѕРїРёСЂРѕРІР°РЅРёСЏ РёР»Рё РїРµСЂРµРјРµС‰РµРЅРёСЏ)
 	endProfile("Emplace back");
 
 
-	cout << "б) заполнить контейнер случайными данными (алгоритмы generate(), generate_n())" << endl;
+	cout << "Р±) Р·Р°РїРѕР»РЅРёС‚СЊ РєРѕРЅС‚РµР№РЅРµСЂ СЃР»СѓС‡Р°Р№РЅС‹РјРё РґР°РЅРЅС‹РјРё (Р°Р»РіРѕСЂРёС‚РјС‹ generate(), generate_n())" << endl;
 	beginProfile();
 	auto genLambda = [&gen, &height_d, &weight_d]() {return tuple<int, int>(height_d(gen), weight_d(gen)); };
-	generate(container.begin(), container.end(), tupleGenerator);//заполняет диапазон, ограничен. парой first/last, вызывая последовательно gen
+	generate(container.begin(), container.end(), tupleGenerator);//Р·Р°РїРѕР»РЅСЏРµС‚ РґРёР°РїР°Р·РѕРЅ, РѕРіСЂР°РЅРёС‡РµРЅ. РїР°СЂРѕР№ first/last, РІС‹Р·С‹РІР°СЏ РїРѕСЃР»РµРґРѕРІР°С‚РµР»СЊРЅРѕ gen
 	endProfile("Generate");
 
 	beginProfile();
-	generate_n(container.begin(), N, tupleGenerator);//заполняет последоватльность начиная с first, n раз вызывая gen
+	generate_n(container.begin(), N, tupleGenerator);//Р·Р°РїРѕР»РЅСЏРµС‚ РїРѕСЃР»РµРґРѕРІР°С‚Р»СЊРЅРѕСЃС‚СЊ РЅР°С‡РёРЅР°СЏ СЃ first, n СЂР°Р· РІС‹Р·С‹РІР°СЏ gen
 	endProfile("Generate N");
 
 
-	cout << "в) сортировать (алгоритм sort()). Реализовать функтор сравнения. Для списка применить метод sort()" << endl;
+	cout << "РІ) СЃРѕСЂС‚РёСЂРѕРІР°С‚СЊ (Р°Р»РіРѕСЂРёС‚Рј sort()). Р РµР°Р»РёР·РѕРІР°С‚СЊ С„СѓРЅРєС‚РѕСЂ СЃСЂР°РІРЅРµРЅРёСЏ. Р”Р»СЏ СЃРїРёСЃРєР° РїСЂРёРјРµРЅРёС‚СЊ РјРµС‚РѕРґ sort()" << endl;
 	beginProfile();
 	auto cmp = [](tuple<int, int>x, tuple<int, int>y) {
-		int cx = get<0>(x) / get<1>(x);//рост/вес
-		int cy = get<0>(y) / get<1>(y);//рост/вес
+		int cx = get<0>(x) / get<1>(x);//СЂРѕСЃС‚/РІРµСЃ
+		int cy = get<0>(y) / get<1>(y);//СЂРѕСЃС‚/РІРµСЃ
 		return cx == cy ? get<0>(x) < get<0>(y) : cx < cy;
 	};
-	sort(container.begin(), container.end(), cmp);//сортирует элементы в диапазоне [first, last)по возрастанию 
-	/*элементы сравниваются с помощью заданной двоичной функции сравнения;
-	cmp - объект функции сравнения, который возвращает true, если первый аргумент меньше (т. е. упорядочен до) второго*/
+	sort(container.begin(), container.end(), cmp);//СЃРѕСЂС‚РёСЂСѓРµС‚ СЌР»РµРјРµРЅС‚С‹ РІ РґРёР°РїР°Р·РѕРЅРµ [first, last)РїРѕ РІРѕР·СЂР°СЃС‚Р°РЅРёСЋ 
+	/*СЌР»РµРјРµРЅС‚С‹ СЃСЂР°РІРЅРёРІР°СЋС‚СЃСЏ СЃ РїРѕРјРѕС‰СЊСЋ Р·Р°РґР°РЅРЅРѕР№ РґРІРѕРёС‡РЅРѕР№ С„СѓРЅРєС†РёРё СЃСЂР°РІРЅРµРЅРёСЏ;
+	cmp - РѕР±СЉРµРєС‚ С„СѓРЅРєС†РёРё СЃСЂР°РІРЅРµРЅРёСЏ, РєРѕС‚РѕСЂС‹Р№ РІРѕР·РІСЂР°С‰Р°РµС‚ true, РµСЃР»Рё РїРµСЂРІС‹Р№ Р°СЂРіСѓРјРµРЅС‚ РјРµРЅСЊС€Рµ (С‚. Рµ. СѓРїРѕСЂСЏРґРѕС‡РµРЅ РґРѕ) РІС‚РѕСЂРѕРіРѕ*/
 	endProfile("Sort");
 
-	cout << "г) удалить дубликаты (алгоритм unique()) и уменьшить размер (метод erase()). Для списка применить метод unique()" << endl;
+	cout << "Рі) СѓРґР°Р»РёС‚СЊ РґСѓР±Р»РёРєР°С‚С‹ (Р°Р»РіРѕСЂРёС‚Рј unique()) Рё СѓРјРµРЅСЊС€РёС‚СЊ СЂР°Р·РјРµСЂ (РјРµС‚РѕРґ erase()). Р”Р»СЏ СЃРїРёСЃРєР° РїСЂРёРјРµРЅРёС‚СЊ РјРµС‚РѕРґ unique()" << endl;
 	beginProfile();
 	auto cmpEq = [](tuple<int, int>x, tuple<int, int>y) {return get<0>(x) == get<0>(y) && get<1>(x) == get<1>(y); };
-	auto nEnd = unique(container.begin(), container.end(), cmpEq);//удаляет все последовательно повторяющиеся элементы из диапазона
-	container.erase(nEnd, container.end());//удаляет указанные элементы из контейнера
+	auto nEnd = unique(container.begin(), container.end(), cmpEq);//СѓРґР°Р»СЏРµС‚ РІСЃРµ РїРѕСЃР»РµРґРѕРІР°С‚РµР»СЊРЅРѕ РїРѕРІС‚РѕСЂСЏСЋС‰РёРµСЃСЏ СЌР»РµРјРµРЅС‚С‹ РёР· РґРёР°РїР°Р·РѕРЅР°
+	container.erase(nEnd, container.end());//СѓРґР°Р»СЏРµС‚ СѓРєР°Р·Р°РЅРЅС‹Рµ СЌР»РµРјРµРЅС‚С‹ РёР· РєРѕРЅС‚РµР№РЅРµСЂР°
 	endProfile("Unique & Erase");
 
-	cout << "д) случайно переставить элементы (алгоритм shuffle())" << endl;
+	cout << "Рґ) СЃР»СѓС‡Р°Р№РЅРѕ РїРµСЂРµСЃС‚Р°РІРёС‚СЊ СЌР»РµРјРµРЅС‚С‹ (Р°Р»РіРѕСЂРёС‚Рј shuffle())" << endl;
 	beginProfile();
-	shuffle(container.begin(), container.end(), gen);//изменяет порядок элементов в заданном диапазоне
+	shuffle(container.begin(), container.end(), gen);//РёР·РјРµРЅСЏРµС‚ РїРѕСЂСЏРґРѕРє СЌР»РµРјРµРЅС‚РѕРІ РІ Р·Р°РґР°РЅРЅРѕРј РґРёР°РїР°Р·РѕРЅРµ
 	endProfile("Shuffle");
 
-	cout << "е) посчитать количество элементов, удовлетворяющих заданному условию (алгоритм count_if())" << endl;
+	cout << "Рµ) РїРѕСЃС‡РёС‚Р°С‚СЊ РєРѕР»РёС‡РµСЃС‚РІРѕ СЌР»РµРјРµРЅС‚РѕРІ, СѓРґРѕРІР»РµС‚РІРѕСЂСЏСЋС‰РёС… Р·Р°РґР°РЅРЅРѕРјСѓ СѓСЃР»РѕРІРёСЋ (Р°Р»РіРѕСЂРёС‚Рј count_if())" << endl;
 	beginProfile();
-	int cmpVal = 114;//значение для сравнения
-	auto ch = [cmpVal](tuple<int, int>x) {return sqrt(get<0>(x)*get<1>(x)) == cmpVal; };//корень квадратный из произведения рост и вес
-	int count = count_if(container.begin(), container.end(), ch);//возвращает кол-во элементов в диапазоне, удовлетвор. определенному условию
+	int cmpVal = 114;//Р·РЅР°С‡РµРЅРёРµ РґР»СЏ СЃСЂР°РІРЅРµРЅРёСЏ
+	auto ch = [cmpVal](tuple<int, int>x) {return sqrt(get<0>(x)*get<1>(x)) == cmpVal; };//РєРѕСЂРµРЅСЊ РєРІР°РґСЂР°С‚РЅС‹Р№ РёР· РїСЂРѕРёР·РІРµРґРµРЅРёСЏ СЂРѕСЃС‚ Рё РІРµСЃ
+	int count = count_if(container.begin(), container.end(), ch);//РІРѕР·РІСЂР°С‰Р°РµС‚ РєРѕР»-РІРѕ СЌР»РµРјРµРЅС‚РѕРІ РІ РґРёР°РїР°Р·РѕРЅРµ, СѓРґРѕРІР»РµС‚РІРѕСЂ. РѕРїСЂРµРґРµР»РµРЅРЅРѕРјСѓ СѓСЃР»РѕРІРёСЋ
 	endProfile("Count_if");
 
-	cout << "заменить элементы (алгоритм replace_if()). Реализовать критерий для замены как лямбда-функцию" << endl;
+	cout << "Р·Р°РјРµРЅРёС‚СЊ СЌР»РµРјРµРЅС‚С‹ (Р°Р»РіРѕСЂРёС‚Рј replace_if()). Р РµР°Р»РёР·РѕРІР°С‚СЊ РєСЂРёС‚РµСЂРёР№ РґР»СЏ Р·Р°РјРµРЅС‹ РєР°Рє Р»СЏРјР±РґР°-С„СѓРЅРєС†РёСЋ" << endl;
 	beginProfile();
-	tuple<long, long> sum1 = accumulate(container.begin(), container.end(), tuple<long, long>(0, 0), [](tuple<long, long>acc, tuple<int, int>x)//считает сумму значений и всех элементов в диапазоне
+	tuple<long, long> sum1 = accumulate(container.begin(), container.end(), tuple<long, long>(0, 0), [](tuple<long, long>acc, tuple<int, int>x)//СЃС‡РёС‚Р°РµС‚ СЃСѓРјРјСѓ Р·РЅР°С‡РµРЅРёР№ Рё РІСЃРµС… СЌР»РµРјРµРЅС‚РѕРІ РІ РґРёР°РїР°Р·РѕРЅРµ
 	{
 		return tuple<long, long>(get<0>(acc) + get<0>(x), get<1>(acc) + get<1>(x));
 	});
-	tuple<int, int>mean = make_tuple(get<0>(sum1) / container.size(), get<1>(sum1) / container.size());//среднее арифметическое
-	replace_if(container.begin(), container.end(), ch, mean);//заменяет все элементы в диапазоне, удовлет. определенному условию(для которых возвращает true), на new_value
+	tuple<int, int>mean = make_tuple(get<0>(sum1) / container.size(), get<1>(sum1) / container.size());//СЃСЂРµРґРЅРµРµ Р°СЂРёС„РјРµС‚РёС‡РµСЃРєРѕРµ
+	replace_if(container.begin(), container.end(), ch, mean);//Р·Р°РјРµРЅСЏРµС‚ РІСЃРµ СЌР»РµРјРµРЅС‚С‹ РІ РґРёР°РїР°Р·РѕРЅРµ, СѓРґРѕРІР»РµС‚. РѕРїСЂРµРґРµР»РµРЅРЅРѕРјСѓ СѓСЃР»РѕРІРёСЋ(РґР»СЏ РєРѕС‚РѕСЂС‹С… РІРѕР·РІСЂР°С‰Р°РµС‚ true), РЅР° new_value
 	endProfile("Replace_if");
 
 	system("pause");
@@ -130,7 +130,7 @@ int main(int argc, char *argv[])
 	return 0;
 }
 
-/*transform(container.begin(), container.end(), container.begin(), [&ch, &mean](tuple<int, int>x)
+transform(container.begin(), container.end(), container.begin(), [&ch, &mean](tuple<int, int>x)
 	{
 		if (ch(x))
 			return tuple<int, int>(get<0>(mean) + get<0>(x), get<1>(mean) + get<1>(x));
@@ -138,4 +138,4 @@ int main(int argc, char *argv[])
 			return x;
 	});
 	container;
-	endProfile("Replace_if");*/
+	endProfile("Replace_if");
